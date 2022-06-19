@@ -1,10 +1,9 @@
 import os
-from pathlib import Path
+from unipath import Path
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
+BASE_DIR = Path(__file__).ancestor(3)
+ 
 SECRET_KEY = 'django-insecure-l)qqnd+e0$6$_xj5))m+(ol)vk7o(&8fa*(-!hoi#2hot_07bn'
 
 INSTALLED_APPS = [
@@ -16,6 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'applications.departamento',
     'applications.persona',
+    'applications.home',
 ]
 
 MIDDLEWARE = [
@@ -33,7 +33,7 @@ ROOT_URLCONF = 'projecto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR.child('templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
