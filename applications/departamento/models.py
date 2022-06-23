@@ -1,7 +1,8 @@
+from enum import unique
 from django.db import models
 
 class Departamento(models.Model):
-    name = models.CharField('Nombre', max_length=50)
+    name = models.CharField('Nombre', max_length=50, editable=False)
     shor_name = models.CharField('Nombre Corto', max_length=20, unique=True)
     anulate = models.BooleanField('Anulado', default=False)
 
@@ -9,6 +10,7 @@ class Departamento(models.Model):
         verbose_name = 'Mi Departamento'
         verbose_name_plural = 'Areas de la empresa'
         ordering = ['shor_name'] 
+        unique_together = ('name', 'shor_name')
 
 
     def __str__(self):
